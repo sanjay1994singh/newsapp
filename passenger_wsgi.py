@@ -1,1 +1,1 @@
-from midpoint.wsgi import application
+from newsProject.wsgi import application
