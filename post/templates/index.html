@@ -81,6 +81,7 @@
     <div class="container d-flex mx-auto">
         <div class="row">
             <div class="col-lg-2 border">
+                
                 {% for i in category %}
                 <div onclick="post_data('{{i.id}}')">{{i.category_name}}</div>
                 {% endfor %}
