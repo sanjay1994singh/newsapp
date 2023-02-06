@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Samachar</title>
+    <title>Samachar express tv</title>
     <style>
         
         .nav-links {
@@ -81,7 +81,6 @@
     <div class="container d-flex mx-auto">
         <div class="row">
             <div class="col-lg-2 border">
-                
                 {% for i in category %}
                 <div onclick="post_data('{{i.id}}')">{{i.category_name}}</div>
                 {% endfor %}
