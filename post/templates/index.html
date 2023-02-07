@@ -33,8 +33,8 @@
 
 <body>
     <div class="container mx-auto col-lg-12 text-center mt-1 mb-4">
-        <span><strong>News Network 24/7</strong></span>
-        <img src="static\ads\head top2.jfif" alt="" class="img-fluid ms-5">
+        <span><strong>Samachar express tv</strong></span>
+        <img src="{{top1}}" alt="" class="img-fluid ms-5">
     </div>
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
         <div class="container-fluid">
@@ -76,7 +76,7 @@
     </marquee>
     <hr>
     <div class="container mx-auto col-lg-12 text-center mb-4">
-        <img src="static\ads\head ads1.png" alt="" class="img-fluid">
+        <img src="{{top2}}" alt="" class="img-fluid">
     </div>
     <div class="container d-flex mx-auto">
         <div class="row">
@@ -85,7 +85,7 @@
                 <div onclick="post_data('{{i.id}}')">{{i.category_name}}</div>
                 {% endfor %}
             </div>
-            <div class="main col-lg-6 border p-4 mx-auto">
+            <div id="main-div" class="main col-lg-6 border p-4 mx-auto">
                 {% for i in post %}
                 <p class="post-title">{{i.post_title}}</p>
                 <img src="{{i.post_img.url}}" alt="" class="img-fluid">
@@ -107,8 +107,27 @@
                 url: '/get_data_by_cat/'+id+'/',
                 type: "GET",
                 dataType: "json",
-                success: (data) => {
-                    console.log(data);
+                success: (results) => {
+                    console.log(results);
+                    if(results.data == 0){
+                        $('#main-div').html('no data found')
+                    }
+                    else{
+                        $('#main-div').html('')
+                        for (const iterator of results.data) {
+                            html = '';
+                            html += '<div>';
+                            html += '<p class="post-title">'+iterator['title']+'</p>';
+                            html += '<img src="'+iterator['img']+'" alt="" class="img-fluid">';
+                            html += '<p>'+iterator['created_at']+'</p>';
+                            html += '<p>'+iterator['desc']+'</p>';
+                            html += '</div>';
+                            $('#main-div').append(html)
+                            console.log(html);
+                        }
+                    }
+                    
+                        
                 },
                 error: (error) => {
                     console.log(error);
