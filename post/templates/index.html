@@ -28,6 +28,15 @@
             font-weight: bolder;
             color: red;
         }
+
+        #navbar-id{
+            position: sticky;
+            top: 0%;
+        }
+        #l-side-menu, #r-side-menu{
+            position: sticky;
+            top: 14%;
+        }
     </style>
 </head>
 
@@ -36,7 +45,7 @@
         <span><strong class="fs-1">Samachar express tv</strong></span>
         <img src="{{top1}}" alt="" class="img-fluid">
     </div>
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
+    <nav id="navbar-id" class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +89,7 @@
     </div>
     <div class="container d-flex mx-auto">
         <div class="row">
-            <div class="col-lg-2 border">
+            <div id="l-side-menu" class="col-lg-2 border" style="height: 50vh">
                 {% for i in category %}
                 <div onclick="post_data('{{i.id}}')">{{i.category_name}}</div>
                 {% endfor %}
@@ -93,7 +102,7 @@
                 <p>Date : {{i.created_at}}</p>
                 {% endfor %}
             </div>
-            <div class="col-lg-2 border">
+            <div id="r-side-menu" class="col-lg-2 border" style="height: 50vh">
                 {% for i in category %}
                 <div>{{i.category_name}}</div>
                 {% endfor %}
