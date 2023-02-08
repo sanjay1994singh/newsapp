@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="container mx-auto border">
+    <h1 class="text-center">this is container</h1>
+    <div class="row">
+        <div class="col-lg-6 border">
+            <p style="font-weight: bold; text-align: center;">{{post_data.post_title}}</p>
+            <img src="{{post_data.post_img.url}}" alt="" class="img-fluid">
+            <p>{{post_data.created_at}}</p>
+            <p style="text-align: justify;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat amet pariatur eius officiis incidunt,
+                excepturi inventore nam odit reiciendis minima, fuga animi nostrum! Commodi, minima accusamus nesciunt
+                quae
+                facere at explicabo velit assumenda, doloremque voluptatibus quidem minus in delectus quaerat repellat
+                porro
+                praesentium tempore. Rerum laboriosam dolorum illo quidem voluptas.
+            </p>
+        </div>
+
+        <div class="col-lg-6 border">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat amet pariatur eius officiis incidunt,
+            excepturi inventore nam odit reiciendis minima, fuga animi nostrum! Commodi, minima accusamus nesciunt quae
+            facere at explicabo velit assumenda, doloremque voluptatibus quidem minus in delectus quaerat repellat porro
+            praesentium tempore. Rerum laboriosam dolorum illo quidem voluptas.
+
+        </div>
+    </div>
+</div>
+{% endblock header %}

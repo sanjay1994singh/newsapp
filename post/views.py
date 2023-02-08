@@ -27,6 +27,7 @@ def get_data_by_cat(request,id):
         data_list = []
         for i in data:
             data_dic = {}
+            data_dic['id'] = i.pk
             data_dic['title'] = i.post_title
             data_dic['desc'] = i.post_desc
             data_dic['img'] = i.post_img.url
@@ -39,3 +40,12 @@ def get_data_by_cat(request,id):
         'data': data_list
     }
     return JsonResponse(json_data)
+
+def view_post_details(request,obj_id):
+    obj_id = obj_id
+    single_post = PostMaster.objects.get(id=obj_id)
+    context = {
+        'obj_id':obj_id,
+        'post_data':single_post,
+    }
+    return render(request,'post_detail.html',context)
