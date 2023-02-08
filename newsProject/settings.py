@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'category',
     'post',
     'advertisement',
-    'django_social_share',
 
     
 ]
