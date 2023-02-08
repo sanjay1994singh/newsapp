@@ -13,7 +13,10 @@
     <title>Samachar express tv</title>
 
     <style>
-        
+        * {
+            box-sizing: border-box;
+        }
+
         .nav-links {
             list-style: none;
             margin: auto;
@@ -31,19 +34,32 @@
             z-index: 0;
         }
 
-        #navbar-id{
+        #navbar-id {
             position: sticky;
             top: 0%;
             z-index: 1;
         }
-        #l-side-menu, #r-side-menu{
+
+        #l-side-menu,
+        #r-side-menu {
             position: sticky;
             top: 14%;
         }
+
         @media screen and (max-width: 600px) {
-            #l-side-menu, #r-side-menu{
+
+            #l-side-menu,
+            #r-side-menu {
                 display: none;
             }
+        }
+
+        .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
         }
     </style>
 </head>
@@ -77,7 +93,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Contact</a>
                     </li>
-                    
+
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -99,16 +115,25 @@
     <div class="container d-flex mx-auto">
         <div class="row">
             <div id="l-side-menu" class="col-lg-2 border" style="height: 50vh">
-                {% for i in category %}
-                <div onclick="post_data('{{i.id}}')">{{i.category_name}}</div>
-                {% endfor %}
+                <ol class="list-group list-group-numbered">
+                    {% for i in category %}
+                    <li onclick="post_data('{{i.id}}')" style="cursor:pointer;"
+                        class="list-group-item d-flex justify-content-between align-items-center">
+                        {{i.category_name}}
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </li>
+                    {% endfor %}
+                </ol>
             </div>
-            <div id="main-div" class="main col-lg-6 border p-4 mx-auto">
+            <div id="main-div" class="main col-lg-6 p-4 mx-auto">
                 {% for i in post %}
-                <p class="post-title">{{i.post_title}}</p>
-                <img src="{{i.post_img.url}}" alt="" class="img-fluid">
-                <p>{{i.post_desc}}</p>
-                <p>Date : {{i.created_at}}</p>
+                <div style="cursor:pointer;" class="border shadow p-3 mb-5 bg-white rounded"
+                    onclick="view_post('{{i.id}}')">
+                    <p class="post-title">{{i.post_title}}</p>
+                    <img src="{{i.post_img.url}}" alt="" class="img-fluid">
+                    <p>{{i.post_desc}}</p>
+                    <p>Date : {{i.created_at}}</p>
+                </div>
                 {% endfor %}
             </div>
             <div id="r-side-menu" class="col-lg-2 border" style="height: 50vh">
@@ -122,27 +147,27 @@
     <script>
         function post_data(id) {
             $.ajax({
-                url: '/get_data_by_cat/'+id+'/',
+                url: '/get_data_by_cat/' + id + '/',
                 type: "GET",
                 dataType: "json",
                 success: (results) => {
                     // console.log(results);
-                    if(results.data == 0){
+                    if (results.data == 0) {
                         $('#main-div').html('no data found')
                     }
-                    else{
+                    else {
                         $('#main-div').html('')
                         for (const iterator of results.data) {
                             html = '';
-                            html += '<div onclick="view_post('+iterator['id']+')">';
-                            html += '<p class="post-title">'+iterator['title']+'</p>';
-                            html += '<img src="'+iterator['img']+'" alt="" class="img-fluid">';
-                            html += '<p>'+iterator['created_at']+'</p>';
-                            html += '<p>'+iterator['desc']+'</p>';
+                            html += '<div style="cursor:pointer;" class="border shadow p-3 mb-5 bg-white rounded" onclick="view_post(' + iterator['id'] + ')">';
+                            html += '<p class="post-title">' + iterator['title'] + '</p>';
+                            html += '<img src="' + iterator['img'] + '" alt="" class="img-fluid">';
+                            html += '<p>' + iterator['created_at'] + '</p>';
+                            html += '<p>' + iterator['desc'] + '</p>';
                             html += '</div>';
                             $('#main-div').append(html)
                         }
-                    }        
+                    }
                 },
                 error: (error) => {
                     console.log(error);
@@ -151,9 +176,9 @@
         }
 
         function view_post(obj_id) {
-            window.location = '/view_post_details/'+obj_id+'/';
+            window.location = '/view_post_details/' + obj_id + '/';
         }
-        
+
     </script>
     {% endblock header %}
     <!-- Optional JavaScript; choose one of the two! -->
