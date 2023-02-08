@@ -27,15 +27,22 @@
         marquee {
             font-weight: bolder;
             color: red;
+            z-index: 0;
         }
 
         #navbar-id{
             position: sticky;
             top: 0%;
+            z-index: 1;
         }
         #l-side-menu, #r-side-menu{
             position: sticky;
             top: 14%;
+        }
+        @media screen and (max-width: 600px) {
+            #l-side-menu, #r-side-menu{
+                display: none;
+            }
         }
     </style>
 </head>
