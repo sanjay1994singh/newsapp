@@ -25,7 +25,6 @@
         * {
             box-sizing: border-box;
         }
-
         .nav-links {
             list-style: none;
             margin: auto;
@@ -33,13 +32,16 @@
         }
 
         .post-title {
-            font-weight: bolder;
+            font-weight: 900;
+            font-size: larger;
             text-align: center;
+        }
+        .post-date{
+            font-weight: bolder;
         }
 
         marquee {
             font-weight: bolder;
-            color: red;
             z-index: 0;
         }
 
@@ -49,8 +51,7 @@
             z-index: 1;
         }
 
-        #l-side-menu,
-        #r-side-menu {
+        #l-side-menu, #r-side-menu {
             position: sticky;
             top: 14%;
         }
@@ -61,7 +62,6 @@
                 display: none;
             }
         }
-
         .dot {
             height: 25px;
             width: 25px;
@@ -69,6 +69,7 @@
             border-radius: 50%;
             display: inline-block;
         }
+        
         .jssocials-share-link { 
             border-radius: 30%;
         } 
@@ -81,7 +82,7 @@
         <img src="{{top1}}" alt="" class="img-fluid">
     </div>
     <nav id="navbar-id" class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
-        <div class="container-fluid">
+        <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -120,12 +121,12 @@
     </marquee>
     <hr>
     <div class="container mx-auto col-lg-12 text-center mb-4">
-        <img src="{{top2}}" alt="" class="img-fluid">
+        <!-- <img src="{{top2}}" alt="" class="img-fluid"> -->
     </div>
     {% block header %}
-    <div class="container d-flex mx-auto">
+    <div id="bglight" class="container d-flex mx-auto">
         <div class="row">
-            <div id="l-side-menu" class="col-lg-2 border" style="height: 50vh">
+            <div id="l-side-menu" class="col-lg-2" style="height: 70vh">
                 <ol class="list-group list-group-numbered">
                     {% for i in category %}
                     <li onclick="post_data('{{i.id}}')" style="cursor:pointer;"
@@ -136,21 +137,20 @@
                     {% endfor %}
                 </ol>
             </div>
-            <div id="main-div" class="main col-lg-6 p-4 mx-auto">
+            <div id="main-div" class="main col-lg-6 mx-auto">
                 {% for i in post %}
-                <div style="cursor:pointer;" class="border"
-                    onclick="view_post('{{i.id}}')">
+                <div style="cursor:pointer;" class="border p-4 mb-4"
+                    onclick="view_post('{{i.id}}')" h:i a>
                     <p class="post-title">{{i.post_title}}</p>
-                    <img src="{{i.post_img.url}}" alt="" class="img-fluid">
-                    <p>{{i.post_desc}}</p>
-                    <p>Date : {{i.created_at}}</p>
+                    <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
+                    <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
+                    <p style="text-align: justify;">{{i.post_desc}}</p>
+                    
                 </div>
                 {% endfor %}
             </div>
-            <div id="r-side-menu" class="col-lg-2 border" style="height: 50vh">
-                {% for i in category %}
-                <div>{{i.category_name}}</div>
-                {% endfor %}
+            <div id="r-side-menu" class="col-lg-2 text-center" style="height: 70vh">
+                <img src="{{side2}}" alt="" class="img-fluid">
             </div>
         </div>
     </div>
@@ -170,11 +170,13 @@
                         $('#main-div').html('')
                         for (const iterator of results.data) {
                             html = '';
-                            html += '<div style="cursor:pointer;" class="border" onclick="view_post(' + iterator['id'] + ')">';
+                            html += '<div style="cursor:pointer;" class="border mb-4" onclick="view_post(' + iterator['id'] + ')">';
+                            html += '<div class="p-4">';
                             html += '<p class="post-title">' + iterator['title'] + '</p>';
-                            html += '<img src="' + iterator['img'] + '" alt="" class="img-fluid">';
-                            html += '<p>' + iterator['created_at'] + '</p>';
-                            html += '<p>' + iterator['desc'] + '</p>';
+                            html += '<img src="'+iterator['img']+'" alt="" class="img-fluid mb-3">';
+                            html += '<p>' + iterator['created_at'] +'</p>';
+                            html += '<p style="text-align: justify;">' + iterator['desc'] + '</p>';
+                            html += '</div>'
                             html += '</div>';
                             $('#main-div').append(html)
                         }
