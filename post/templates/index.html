@@ -138,7 +138,7 @@
             </div>
             <div id="main-div" class="main col-lg-6 p-4 mx-auto">
                 {% for i in post %}
-                <div style="cursor:pointer;" class="border shadow p-3 mb-5 bg-white rounded"
+                <div style="cursor:pointer;" class="border"
                     onclick="view_post('{{i.id}}')">
                     <p class="post-title">{{i.post_title}}</p>
                     <img src="{{i.post_img.url}}" alt="" class="img-fluid">
@@ -170,7 +170,7 @@
                         $('#main-div').html('')
                         for (const iterator of results.data) {
                             html = '';
-                            html += '<div style="cursor:pointer;" class="border shadow p-3 mb-5 bg-white rounded" onclick="view_post(' + iterator['id'] + ')">';
+                            html += '<div style="cursor:pointer;" class="border" onclick="view_post(' + iterator['id'] + ')">';
                             html += '<p class="post-title">' + iterator['title'] + '</p>';
                             html += '<img src="' + iterator['img'] + '" alt="" class="img-fluid">';
                             html += '<p>' + iterator['created_at'] + '</p>';
