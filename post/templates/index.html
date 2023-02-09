@@ -182,6 +182,10 @@
         function view_post(obj_id) {
             window.location = '/view_post_details/' + obj_id + '/';
         }
+        
+    $("#share").jsSocials({
+        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+    });
 
     </script>
     {% endblock header %}
