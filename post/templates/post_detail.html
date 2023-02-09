@@ -1,9 +1,11 @@
 {% extends 'index.html' %}
+<style>
+
+</style>
 {% block header %}
 <div class="container mx-auto border">
-    <h1 class="text-center">this is container</h1>
     <div class="row">
-        <div class="col-lg-6 border">
+        <div class="col-lg-6 border mb-4">
             <p style="font-weight: bold; text-align: center;">{{post_data.post_title}}</p>
             <img src="{{post_data.post_img.url}}" alt="" class="img-fluid">
             <p>{{post_data.created_at}}</p>
@@ -15,8 +17,7 @@
                 porro
                 praesentium tempore. Rerum laboriosam dolorum illo quidem voluptas.
             </p>
-            
-
+            <div id="share" class=""></div>
         </div>
 
         <div class="col-lg-6 border">
@@ -28,7 +29,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    $("#share").jsSocials({
+        showLabel: false,
+        showCount: false,
+        shares: ["email", "twitter", "facebook", "linkedin", "stumbleupon", "whatsapp",]
+    });
+</script>
 
 
 {% endblock header %}

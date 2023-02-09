@@ -12,6 +12,8 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
@@ -55,8 +57,7 @@
 
         @media screen and (max-width: 600px) {
 
-            #l-side-menu,
-            #r-side-menu {
+            #l-side-menu, #r-side-menu {
                 display: none;
             }
         }
@@ -68,6 +69,9 @@
             border-radius: 50%;
             display: inline-block;
         }
+        .jssocials-share-link { 
+            border-radius: 30%;
+        } 
     </style>
 </head>
 
@@ -131,7 +135,6 @@
                     </li>
                     {% endfor %}
                 </ol>
-                <div id="share"></div>
             </div>
             <div id="main-div" class="main col-lg-6 p-4 mx-auto">
                 {% for i in post %}
@@ -186,10 +189,6 @@
         function view_post(obj_id) {
             window.location = '/view_post_details/' + obj_id + '/';
         }
-        
-    $("#share").jsSocials({
-        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
-    });
 
     </script>
     {% endblock header %}
