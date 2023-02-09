@@ -47,10 +47,12 @@ def get_data_by_cat(request,id):
 def view_post_details(request,obj_id):
     obj_id = obj_id
     post = PostMaster.objects.all().order_by('-created_at')[:5]
+    otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')
     single_post = PostMaster.objects.get(id=obj_id)
     context = {
         'obj_id':obj_id,
         'post':post,
         'post_data':single_post,
+        'otherpost':otherpost,
     }
     return render(request,'post_detail.html',context)

@@ -125,7 +125,7 @@
                 <ol class="list-group list-group-numbered">
                     {% for i in category %}
                     <li onclick="post_data('{{i.id}}')" style="cursor:pointer;"
-                        class="cat-li list-group-item d-flex justify-content-between align-items-center">
+                        class="cat-li list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="right" title="{{i.category_name}}">
                         {{i.category_name}}
                         <span class="badge rounded-pill">14</span>
                     </li>
