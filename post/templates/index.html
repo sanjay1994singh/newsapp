@@ -73,6 +73,10 @@
         .jssocials-share-link { 
             border-radius: 30%;
         } 
+
+        .cat-li:hover{
+            background-color: #bbb;
+        }
     </style>
 </head>
 
@@ -88,7 +92,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">Latest News </a>
+                <a class="navbar-brand" href="/">Home page</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     
                     {% for i in category|slice:"10" %}
@@ -122,9 +126,9 @@
                 <ol class="list-group list-group-numbered">
                     {% for i in category %}
                     <li onclick="post_data('{{i.id}}')" style="cursor:pointer;"
-                        class="list-group-item d-flex justify-content-between align-items-center">
+                        class="cat-li list-group-item d-flex justify-content-between align-items-center">
                         {{i.category_name}}
-                        <span class="badge bg-primary rounded-pill">14</span>
+                        <span class="badge rounded-pill">14</span>
                     </li>
                     {% endfor %}
                 </ol>
@@ -132,7 +136,7 @@
             <div id="main-div" class="main col-lg-6 mx-auto">
                 {% for i in post %}
                 <div style="cursor:pointer;" class="border p-4 mb-4"
-                    onclick="view_post('{{i.id}}')" h:i a>
+                    onclick="view_post('{{i.id}}')">
                     <p class="post-title">{{i.post_title}}</p>
                     <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
                     <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
@@ -172,6 +176,7 @@
                             html += '</div>';
                             $('#main-div').append(html)
                         }
+                        // $('#navbar-id').slideUp()
                     }
                 },
                 error: (error) => {
