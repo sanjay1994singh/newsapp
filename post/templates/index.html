@@ -107,7 +107,8 @@
     </nav>
     <marquee onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
         {% for i in post %}
-        {{ i.post_title }}
+        {{ forloop.counter }}-
+        {{ i.post_title }}&nbsp;&nbsp;&nbsp;
         {% endfor %}
     </marquee>
     <hr>
