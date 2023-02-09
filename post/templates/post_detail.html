@@ -1,4 +1,11 @@
 {% extends 'index.html' %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+
 {% block header %}
 <div class="container mx-auto border">
     <h1 class="text-center">this is container</h1>
@@ -15,6 +22,7 @@
                 porro
                 praesentium tempore. Rerum laboriosam dolorum illo quidem voluptas.
             </p>
+            <div id="share"></div>
 
         </div>
 
@@ -27,4 +35,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#share").jsSocials({
+        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+    });
+</script>
+
 {% endblock header %}
