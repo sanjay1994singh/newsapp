@@ -136,7 +136,7 @@
                     <p class="post-title">{{i.post_title}}</p>
                     <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
                     <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
-                    <p style="text-align: justify;">{{i.post_desc}}</p>
+                    <p style="text-align: justify;">{{i.post_desc|slice:"200"}} > और आगे पढ़े .....</p>
                     
                 </div>
                 {% endfor %}
