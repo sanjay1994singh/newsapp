@@ -111,8 +111,11 @@
     </nav>
     <marquee onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
         {% for i in post %}
+        <span onclick="view_post('{{i.id}}')">
         {{ forloop.counter }}-
-        {{ i.post_title }}&nbsp;&nbsp;&nbsp;
+        {{ i.post_title }}
+        </span>
+        &nbsp;&nbsp;&nbsp;
         {% endfor %}
     </marquee>
     <hr>
