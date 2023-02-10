@@ -120,7 +120,7 @@
             </div>
         </div>
     </nav>
-    <marquee onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
+    <marquee scrollamount="12" onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
         {% for i in post %}
         <span onclick="view_post('{{i.id}}')" style="cursor: pointer;">
         {{ forloop.counter }}-
