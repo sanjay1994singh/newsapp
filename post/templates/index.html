@@ -81,6 +81,7 @@
         .cat-li:hover{
             background-color: #bbb;
         }
+        
     </style>
 </head>
 
@@ -140,19 +141,22 @@
                     <li onclick="post_data('{{i.id}}')" style="cursor:pointer;" 
                         class="cat-li list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="right" title="{{i.category_name}}">
                         {{i.category_name}}
-                        <span class="badge rounded-pill">14</span>
+                        <span id="cat_count" class="badge rounded-pill"> </span>
                     </li>
                     {% endfor %}
                 </ol>
             </div>
             <div id="main-div" class="main col-lg-6 mx-auto">
                 {% for i in post %}
-                <div style="cursor:pointer;" class="border p-4 mb-4"
+                <div style="cursor:pointer;" class="border p-2 mb-4"
                     onclick="view_post('{{i.id}}')">
-                    <p class="post-title">{{i.post_title}}</p>
-                    <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
-                    <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
-                    <p style="text-align: justify;">{{i.post_desc|slice:"200"}} > और आगे पढ़े .....</p>
+                    <div class="p-1">
+                        <p class="post-title">{{i.post_title}}</p>
+                        <hr/>
+                        <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
+                        <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
+                        <p style="text-align: justify;">{{i.post_desc|slice:"200"}} > और आगे पढ़े .....</p>
+                    </div>
                     
                 </div>
                 {% endfor %}
@@ -181,10 +185,11 @@
                             html += '<div style="cursor:pointer;" class="border mb-4" onclick="view_post(' + iterator['id'] + ')">';
                             html += '<div class="p-4">';
                             html += '<p class="post-title">' + iterator['title'] + '</p>';
+                            html += '<hr/>';
                             html += '<img src="'+iterator['img']+'" alt="" class="img-fluid mb-3">';
                             html += '<p>' + iterator['created_at'] +'</p>';
                             html += '<p style="text-align: justify;">' + iterator['desc'] + '</p>';
-                            html += '</div>'
+                            html += '</div>';
                             html += '</div>';
                             $('#main-div').append(html)
                         }
