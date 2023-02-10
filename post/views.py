@@ -6,15 +6,22 @@ from .models import PostMaster
 from category.models import CategoryMaster
 # Create your views here.
 
-def home_page(request):
-    ads = Advertisement.objects.get(ads_name='TOP1')
-    top1 = ads.advert.url
-    ads1 = Advertisement.objects.get(ads_name='TOP2')
-    top2 = ads1.advert.url
-    side2 = Advertisement.objects.get(ads_name='SIDE2')
-    side2 = side2.advert.url
-    post = PostMaster.objects.all().order_by('-created_at')[:25]
-    category = CategoryMaster.objects.all()
+def home_page(request,id=0):
+    if id is not 0:
+        post = PostMaster.objects.filter(post_category_id=id).order_by('-created_at')[:25]
+    else:
+        post = PostMaster.objects.all().order_by('-created_at')[:25]
+    try:
+        ads = Advertisement.objects.get(ads_name='TOP1')
+        top1 = ads.advert.url
+        ads1 = Advertisement.objects.get(ads_name='TOP2')
+        top2 = ads1.advert.url
+        side2 = Advertisement.objects.get(ads_name='SIDE2')
+        side2 = side2.advert.url
+        
+        category = CategoryMaster.objects.all()
+    except Exception as e:
+        print(e,"-------------------- error in home_page function in post app ---------------")
     context = {
         'top1':top1,
         'top2':top2,
