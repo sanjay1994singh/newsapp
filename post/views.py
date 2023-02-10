@@ -29,7 +29,7 @@ def home_page(request,id=0):
         'post':post,
         'category':category,
     }
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
 
 def get_data_by_cat(request,id):
     data = PostMaster.objects.filter(post_category_id=id).order_by('-created_at')
