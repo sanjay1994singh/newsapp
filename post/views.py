@@ -22,7 +22,7 @@ def home_page(request,id=0):
         category = CategoryMaster.objects.all()
     except Exception as e:
         print(e,"-------------------- error in home_page function in post app ---------------")
-        
+
     context = {
         'top1':top1,
         'top2':top2,
@@ -54,11 +54,13 @@ def get_data_by_cat(request,id):
 
 def view_post_details(request,obj_id):
     obj_id = obj_id
+    category = CategoryMaster.objects.all()
     post = PostMaster.objects.all().order_by('-created_at')[:5]
     otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')
     single_post = PostMaster.objects.get(id=obj_id)
     context = {
         'obj_id':obj_id,
+        'category':category,
         'post':post,
         'post_data':single_post,
         'otherpost':otherpost,
