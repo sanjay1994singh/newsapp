@@ -89,11 +89,11 @@
         <span><button type="button" class="btn btn-sm btn-danger"><b>Subscribe now</b></button></span>
         <img id="top1-mg" src="{{top1}}" alt="" class="img-fluid">
     </div>
-    
+
     <nav id="navbar-id" class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
         <div class="container">
             <a class="navbar-brand" href="/">
-            <span class="text-light font-size-">Samachar express tv</span>
+            <span class="text-light font-size-"><strong>Samachar Express<span class="text-danger">Tv</span></strong></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@
             <div id="l-side-menu" class="col-lg-2" style="height: 70vh">
                 <ol class="list-group list-group-numbered">
                     {% for i in category %}
-                    <li onclick="post_data('{{i.id}}')" style="cursor:pointer;"
+                    <li onclick="post_data('{{i.id}}')" style="cursor:pointer;" 
                         class="cat-li list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="right" title="{{i.category_name}}">
                         {{i.category_name}}
                         <span class="badge rounded-pill">14</span>
