@@ -22,6 +22,7 @@ def home_page(request,id=0):
         category = CategoryMaster.objects.all()
     except Exception as e:
         print(e,"-------------------- error in home_page function in post app ---------------")
+        
     context = {
         'top1':top1,
         'top2':top2,
