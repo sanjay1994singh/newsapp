@@ -81,16 +81,27 @@
         .cat-li:hover{
             background-color: #bbb;
         }
+        #loader{
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            z-index: 9999;
+            height: 100%;
+            width: 100%;
+            opacity: .5;
+            background-size: 50px;
+            background:url("{{loader_img}}") 50% 50% no-repeat rgb(0, 0, 0);
+        }
         
     </style>
 </head>
 
-<body>    
+<body>  
     <div class="container mx-auto text-center mt-1 mb-2 justify-content-between">
         <span><button type="button" class="btn btn-sm btn-danger"><b>Subscribe now</b></button></span>
         <img id="top1-mg" src="{{top1}}" alt="" class="img-fluid">
     </div>
-
+    <div id="loader" class="d-none"></div>
     <nav id="navbar-id" class="navbar navbar-expand-lg  navbar-dark bg-dark mb-2">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -120,7 +131,7 @@
             </div>
         </div>
     </nav>
-    <marquee scrollamount="12" onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
+    <marquee scrollamount="10" onmouseenter="stop()" onmouseleave="start()" behavior="" direction="">
         {% for i in post %}
         <span onclick="view_post('{{i.id}}')" style="cursor: pointer;">
         {{ forloop.counter }}-
@@ -168,12 +179,19 @@
     </div>
     
     <script>
-        function post_data(id) {
+        function post_data(id) {            
             $.ajax({
                 url: '/get_data_by_cat/' + id + '/',
                 type: "GET",
                 dataType: "json",
+                beforeSend:function(){
+                    $('#loader').removeClass('d-none')
+                },
                 success: (results) => {
+                    for (let index = 0; index < 100000; index++) {
+                        console.log(index);
+                        
+                    }
                     // console.log(results);
                     if (results.data == 0) {
                         $('#main-div').html('no data found')
@@ -195,6 +213,9 @@
                         }
                         // $('#navbar-id').slideUp()
                     }
+                },
+                complete:function(){
+                    $('#loader').addClass('d-none')
                 },
                 error: (error) => {
                     console.log(error);

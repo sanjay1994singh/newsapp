@@ -12,13 +12,15 @@ def home_page(request,id=0):
     else:
         post = PostMaster.objects.all().order_by('-created_at')[:25]
     try:
+        loader = Advertisement.objects.get(ads_name='LOADER')
+        loader_img = loader.advert.url
         ads = Advertisement.objects.get(ads_name='TOP1')
         top1 = ads.advert.url
         ads1 = Advertisement.objects.get(ads_name='TOP2')
         top2 = ads1.advert.url
         side2 = Advertisement.objects.get(ads_name='SIDE2')
         side2 = side2.advert.url
-        
+        print(loader_img,'================================')
         category = CategoryMaster.objects.all()
     except Exception as e:
         print(e,"-------------------- error in home_page function in post app ---------------")
@@ -29,6 +31,7 @@ def home_page(request,id=0):
         'side2':side2,
         'post':post,
         'category':category,
+        'loader_img':loader_img
     }
     return render(request, 'index.html', context)
 
