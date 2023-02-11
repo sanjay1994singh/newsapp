@@ -188,10 +188,6 @@
                     $('#loader').removeClass('d-none')
                 },
                 success: (results) => {
-                    for (let index = 0; index < 100000; index++) {
-                        console.log(index);
-                        
-                    }
                     // console.log(results);
                     if (results.data == 0) {
                         $('#main-div').html('no data found')
