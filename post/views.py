@@ -76,6 +76,7 @@ def add_post(request,id=0):
         post_text = form.get('post_text')
         select_cat = form.get('select_cat')
         post_img = request.FILES.get('post_img')
+        
         try:
             if id == 0:
                 obj = PostMaster.objects.create(post_title=post_title,
@@ -91,8 +92,13 @@ def add_post(request,id=0):
                 PostMaster.objects.filter(id=id).update(post_title=post_title,
                                                              post_desc=post_text,
                                                              post_category_id=select_cat,
-                                                            #  post_img=post_img
                                                              )
+                
+                if post_img is not None:
+                    image_data = PostMaster.objects.get(id=id)
+                    image_data.post_img = post_img
+                    image_data.save()
+                
                 id = id
                 msg = 'post updated successfully.'
 

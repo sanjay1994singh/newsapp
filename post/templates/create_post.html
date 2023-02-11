@@ -26,8 +26,13 @@
             <div class="mb-2">
                 <textarea class="form-control" name="post_text" id="post_text" autocomplete="off" cols="30" rows="5" placeholder="Enter post text here..">{{post_obj.post_desc}}</textarea>
             </div>
-            <div class="mb-2">
-                <input class="form-control" type="file" name="post_img" id="post_img" value="{{post_obj.post_img}}" placeholder="Enter post title here..">
+            <div class="mb-2 text-center">
+                <input class="form-control" type="file" name="post_img" id="post_img" value="">
+                {% if post_obj.post_img %}
+                <label for="post_img">
+                    <img src="{{post_obj.post_img.url}}" alt="" height="30">
+                </label>
+                {% endif %}
             </div>
             <div class="mb-2">
                 <input class="form-control btn btn-sm btn-primary" type="button"  name="save_btn" id="save_btn" value="save post">
