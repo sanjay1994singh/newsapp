@@ -6,13 +6,14 @@
         <div class="col-lg-6 border mb-4">
             <p class="post-title" style="font-weight: bold; text-align: center; font-size: xx-large;">{{post_data.post_title}}</p>
             <img src="{{post_data.post_img.url}}" alt="" class="img-fluid">
-            <p>{{post_data.created_at}}</p>
+            <p class="post-date">{{post_data.created_at}}</p>
             <p style="text-align: justify;">{{post_data.post_desc}}</p>
             <div id="share" class=""></div>
+            <button onclick="history.back()" class="btn btn-primary btn-sm">Go Back</button>
         </div>
 
         <div class="col-lg-6 border">
-        <h1>Other post</h1>
+        <h1>अन्य खबरें</h1>
             {% for i in otherpost %}
             <div class="bg-warning" style="cursor: pointer;">
                 <p class="text-dark p-4 post-title" onclick="view_post('{{i.id}}')">{{i.post_title }}</p>

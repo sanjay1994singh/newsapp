@@ -20,10 +20,9 @@ def home_page(request,id=0):
         top2 = ads1.advert.url
         side2 = Advertisement.objects.get(ads_name='SIDE2')
         side2 = side2.advert.url
-        print(loader_img,'================================')
         category = CategoryMaster.objects.all()
     except Exception as e:
-        print(e,"-------------------- error in home_page function in post app ---------------")
+        print(e,"----error in home_page function in post app --")
 
     context = {
         'top1':top1,
