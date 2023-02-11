@@ -68,3 +68,52 @@ def view_post_details(request,obj_id):
         'otherpost':otherpost,
     }
     return render(request,'post_detail.html',context)
+
+def add_post(request,id=0):
+    if request.method == 'POST':
+        form = request.POST
+        post_title = form.get('post_title')
+        post_text = form.get('post_text')
+        select_cat = form.get('select_cat')
+        post_img = request.FILES.get('post_img')
+        try:
+            if id == 0:
+                obj = PostMaster.objects.create(post_title=post_title,
+                                        post_desc=post_text,
+                                        post_category_id=select_cat,
+                                        post_img=post_img)
+                id = obj.id
+                if obj:
+                    id = id
+                    msg = 'post saved successfully.'
+
+            else:
+                PostMaster.objects.filter(id=id).update(post_title=post_title,
+                                                             post_desc=post_text,
+                                                             post_category_id=select_cat,
+                                                            #  post_img=post_img
+                                                             )
+                id = id
+                msg = 'post updated successfully.'
+
+        except Exception as e:
+            msg = 'post saved failed.'
+            print(e,'--- error in create post function ----')
+        json_data = {
+            'id':id,
+            'msg':msg,
+        }
+        return JsonResponse(json_data)
+    
+    try:
+        post_obj = PostMaster.objects.get(id=id)
+    except:
+        post_obj = ''
+    
+    category = CategoryMaster.objects.all()
+    context = {
+        'category':category,
+        'post_obj':post_obj,
+        'id':id,
+    }
+    return render(request,'create_post.html',context)

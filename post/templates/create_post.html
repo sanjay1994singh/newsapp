@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="container">
+    <div class="">
+        <h1 class="text-center bg-light p-2">Create a new post</h1>
+        <form id="form_id">{% csrf_token %}
+            <input type="hidden" name="obj_id" id="obj_id" value="{{id}}">
+            <div class="mb-2">
+                <input class="form-control" type="text" name="post_title" id="post_title" value="{{post_obj.post_title}}" autocomplete="off" placeholder="Enter post title here..">
+            </div>
+            <div class="mb-2">
+                <select class="form-control" id="select_cat" name="select_cat">
+                    {% if post_obj %}
+                    <option value="{{post_obj.post_category_id}}">{{post_obj.post_category}}</option>
+                        {% for i in category %}
+                        <option value="{{i.id}}">{{i.category_name}}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="">select category</option>
+                        {% for i in category %}
+                        <option value="{{i.id}}">{{i.category_name}}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="mb-2">
+                <textarea class="form-control" name="post_text" id="post_text" autocomplete="off" cols="30" rows="5" placeholder="Enter post text here..">{{post_obj.post_desc}}</textarea>
+            </div>
+            <div class="mb-2">
+                <input class="form-control" type="file" name="post_img" id="post_img" value="{{post_obj.post_img}}" placeholder="Enter post title here..">
+            </div>
+            <div class="mb-2">
+                <input class="form-control btn btn-sm btn-primary" type="button"  name="save_btn" id="save_btn" value="save post">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('#save_btn').click(function() {
+            var form_data = new FormData($('#form_id')[0])
+            var id = $('#obj_id').val();
+            $.ajax({
+                url: '/add-post/'+id+'/',
+                type: "POST",
+                data: form_data,
+                cache:false,
+                contentType:false,
+                processData:false,
+                beforeSend:function(){
+                    $('#loader').removeClass('d-none')
+                },
+                success: (results) => {
+                    var id = results.id
+                    window.location = '/add-post/'+id+'/';
+                },
+                complete:function(){
+                    $('#loader').addClass('d-none')
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        });
+</script>
+{% endblock header %}
