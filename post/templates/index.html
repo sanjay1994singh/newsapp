@@ -174,7 +174,11 @@
                     <div class="p-1">
                         <p class="post-title">{{i.post_title}}</p>
                         <hr/>
+                        {% if i.post_img.url %}
                         <img src="{{i.post_img.url}}" alt="" class="img-fluid mb-3">
+                        {% else %}
+                        <img src="" alt="No image here" class="img-fluid mb-3">
+                        {% endif %}
                         <p class="post-date">Updated on : {{i.created_at|date:"M d, Y h:i a"}}</p>
                         <p style="text-align: justify;">{{i.post_desc|slice:"200"}} > और आगे पढ़े .....</p>
                     </div>
