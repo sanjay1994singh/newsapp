@@ -43,6 +43,31 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#save_btn').click(function() {
+            if ($('#post_title').val() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill news title.',
+                    })
+                return false;
+            }
+            else if ($('#select_cat').val() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please select Category.',
+                    })
+                return false;
+            }
+            else if ($('#post_text').val() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill news description.',
+                    })
+                return false;
+            }
+
             var post_img = $('#post_img').val()
             var form_data = new FormData($('#form_id')[0])
             var id = $('#obj_id').val();
