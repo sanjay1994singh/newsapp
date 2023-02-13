@@ -24,10 +24,12 @@
     </div>
 </div>
 <script>
+    var current_url = $(location).attr('href');
     function view_post(obj_id) {
         window.location = '/view_post_details/' + obj_id + '/';
     }
     $("#share").jsSocials({
+        url: current_url,
         showLabel: false,
         showCount: false,
         shares: ["email", "twitter", "facebook", "linkedin", "stumbleupon", "whatsapp",]
