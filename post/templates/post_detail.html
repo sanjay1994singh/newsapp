@@ -27,11 +27,7 @@
     function view_post(obj_id) {
         window.location = '/view_post_details/' + obj_id + '/';
     }
-    
-    var current_url = $(location).attr('href')
-    console.log(current_url);
-    $("#share").jsSocials({
-        url: current_url ,
+    $("#share").jsSocials({        
         shares: ["email", "twitter", "facebook", "linkedin", "stumbleupon", "whatsapp",]
     });
 </script>
