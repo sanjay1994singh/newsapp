@@ -28,9 +28,9 @@
         window.location = '/view_post_details/' + obj_id + '/';
     }
     
-    
+    var url = $(location).attr('href')
     $("#share").jsSocials({
-        url: $(location).attr('href'),
+        url: url ,
         shares: ["email", "twitter", "facebook", "linkedin", "stumbleupon", "whatsapp",]
     });
 </script>
