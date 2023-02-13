@@ -40,32 +40,42 @@
         </form>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#save_btn').click(function() {
+            var post_img = $('#post_img').val()
             var form_data = new FormData($('#form_id')[0])
             var id = $('#obj_id').val();
-            $.ajax({
-                url: '/add-post/'+id+'/',
-                type: "POST",
-                data: form_data,
-                cache:false,
-                contentType:false,
-                processData:false,
-                beforeSend:function(){
-                    $('#loader').removeClass('d-none')
-                },
-                success: (results) => {
-                    var id = results.id
-                    window.location = '/add-post/'+id+'/';
-                },
-                complete:function(){
-                    $('#loader').addClass('d-none')
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
+            if (post_img != '') {
+                $.ajax({
+                    url: '/add-post/'+id+'/',
+                    type: "POST",
+                    data: form_data,
+                    cache:false,
+                    contentType:false,
+                    processData:false,
+                    beforeSend:function(){
+                        $('#loader').removeClass('d-none')
+                    },
+                    success: (results) => {
+                        var id = results.id
+                        window.location = '/add-post/'+id+'/';
+                    },
+                    complete:function(){
+                        $('#loader').addClass('d-none')
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please select images',
+                    })
+                return false;
+            }
         });
 </script>
 {% endblock header %}
