@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from advertisement.models import Advertisement
 from .models import PostMaster
@@ -123,3 +123,14 @@ def add_post(request,id=0):
         'id':id,
     }
     return render(request,'create_post.html',context)
+
+def list_page(request):
+    list_post = PostMaster.objects.all().order_by('created_at')[:30]
+    context = {
+        'list_post':list_post
+    }
+    return render(request,'post_list.html',context)
+
+def delete_post(request,id):
+    post_delete = PostMaster.objects.filter(id=id).delete()
+    return redirect('/list_page/')

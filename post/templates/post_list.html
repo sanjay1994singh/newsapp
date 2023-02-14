@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="container">
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Post title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i in list_post %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.post_title}}</td>
+                <td>
+                    <a class="ms-3" href="/add-post/{{i.id}}/"><i class="fa fa-edit"></i></a> 
+                    <a class="ms-3" href="/delete-post/{{i.id}}/"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+    </table>
+</div>
+<script>
+    $('#myTable').DataTable({
+        Response:true,
+    });
+</script>
+{% endblock header %}
