@@ -125,7 +125,7 @@ def add_post(request,id=0):
     return render(request,'create_post.html',context)
 
 def list_page(request):
-    list_post = PostMaster.objects.all().order_by('created_at')[:30]
+    list_post = PostMaster.objects.all().order_by('-created_at')[:30]
     context = {
         'list_post':list_post
     }
