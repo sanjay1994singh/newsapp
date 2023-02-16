@@ -171,8 +171,7 @@
                     $('#loader').removeClass('d-none')
                 },
                 success: (results) => {
-                    console.log(results.msg)
-                    
+                    window.location.href = '/ads_list/';
                 },
                 complete:function(){
                     $('#loader').addClass('d-none')
