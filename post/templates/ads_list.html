@@ -6,6 +6,7 @@
             <tr>
                 <th>Id</th>
                 <th>Image</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -14,6 +15,9 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td><img src="{{i.other_ads.url}}" alt="" height="100px"></td>
+                <td>
+                    <a class="ms-3" href="/delete-ads/{{i.id}}/"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
             </tr>
             {% endfor %}
            

@@ -152,3 +152,7 @@ def ads_list(request):
         'ads_list':ads_list
     }
     return render(request, 'ads_list.html', context)
+
+def delete_ads(request,id):
+    OtherAds.objects.get(id=id).delete()
+    return redirect('/ads_list/')
