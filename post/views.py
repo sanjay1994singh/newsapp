@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
-from advertisement.models import Advertisement
+from advertisement.models import Advertisement,OtherAds
 from .models import PostMaster
 from category.models import CategoryMaster
 # Create your views here.
@@ -60,12 +60,14 @@ def view_post_details(request,obj_id):
     post = PostMaster.objects.all().order_by('-created_at')[:5]
     otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')
     single_post = PostMaster.objects.get(id=obj_id)
+    other_ads = OtherAds.objects.all()
     context = {
         'obj_id':obj_id,
         'category':category,
         'post':post,
         'post_data':single_post,
         'otherpost':otherpost,
+        'other_ads':other_ads,
     }
     return render(request,'post_detail.html',context)
 

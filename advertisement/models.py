@@ -13,3 +13,7 @@ class Advertisement(models.Model):
     class Meta:
         db_table = 'advertisement'
     
+class OtherAds(models.Model):
+    other_ads = models.ImageField(upload_to='otherads', null=True)    
+    class Meta:
+        db_table = 'other_ads'

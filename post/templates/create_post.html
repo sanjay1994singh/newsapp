@@ -1,8 +1,8 @@
 {% extends 'index.html' %}
 {% block header %}
 <div class="container">
-    <div class="row d-flex mx-auto">
-        <div class="col-lg-8">
+    <div class="row d-flex">
+        <div class="col-lg-8 mx-auto">
             <h1 class="text-center bg-light p-2">Create a new post</h1>
             <form id="form_id">{% csrf_token %}
                 <input type="hidden" name="obj_id" id="obj_id" value="{{id}}">
@@ -36,7 +36,7 @@
                     {% endif %}
                 </div>
                 <div class="mb-2">
-                    <input class="form-control btn btn-sm btn-primary" type="button"  name="save_btn" id="save_btn" value="save post">
+                    <input class="form-control btn btn-sm btn-success" type="button"  name="save_btn" id="save_btn" value="save post">
                 </div>
                 <div class="mb-2">
                     <input class="form-control btn btn-sm btn-primary" type="button"  name="save_btn" id="save_btn" value="View list" onclick="list_page()">

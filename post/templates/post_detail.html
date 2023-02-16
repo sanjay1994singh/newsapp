@@ -9,9 +9,18 @@
             <p class="post-date">{{post_data.created_at}}</p>
             <p style="text-align: justify;">{{post_data.post_desc}}</p>
             <div id="share" class=""></div>
-            <button onclick="history.back()" class="btn btn-primary btn-sm">Go Back</button>
+            <button onclick="history.back()" class="btn btn-primary btn-sm mb-3">Go Back</button>
+            <hr/>
+            <h6>Advertisement</h6>
+            <div id="otherads">
+                {% if other_ads %}
+                    {% for i in other_ads %}
+                    <img src="{{i.other_ads.url}}" alt="" class="img-fluid">
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
-
+        
         <div class="col-lg-6 border">
         <h1>अन्य खबरें</h1>
             {% for i in otherpost %}
