@@ -2,7 +2,7 @@
 {% block header %}
 <div class="container">
     <div class="row d-flex">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-8 mx-auto mb-4">
             <h1 class="text-center bg-light p-2">Create a new post</h1>
             <form id="form_id">{% csrf_token %}
                 <input type="hidden" name="obj_id" id="obj_id" value="{{id}}">
@@ -40,6 +40,18 @@
                 </div>
                 <div class="mb-2">
                     <input class="form-control btn btn-sm btn-primary" type="button"  name="save_btn" id="save_btn" value="View list" onclick="list_page()">
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-4 mx-auto ">
+            <h6>Insert Advertisement</h6>
+            <form id="ads_form_id">{% csrf_token %}
+                <div>
+                    <input type="file" class="form-control" name="otherads" id="otherads">
+                </div>
+                <div>
+                    <input type="button" class="form-control bg-success" name="" id="ads_btn" value="add ads">
                 </div>
             </form>
         </div>
@@ -139,5 +151,42 @@
         function list_page() {
             window.location.href = '/list_page/';
         }
+</script>
+
+<script>
+    $('#ads_btn').click(function(){
+        if($('#otherads').val() != ''){
+            var form_data = new FormData($('#ads_form_id')[0])
+            $.ajax({
+                url: '/create-ads/',
+                type: "POST",
+                data: form_data,
+                cache:false,
+                contentType:false,
+                processData:false,
+                beforeSend:function(){
+                    $('#loader').removeClass('d-none')
+                },
+                success: (results) => {
+                    console.log(results.msg)
+                    
+                },
+                complete:function(){
+                    $('#loader').addClass('d-none')
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select Advertisement',
+                color: '#382fcc',
+            })
+            return false;
+        }
+    })
 </script>
 {% endblock header %}

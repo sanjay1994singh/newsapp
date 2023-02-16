@@ -136,3 +136,12 @@ def list_page(request):
 def delete_post(request,id):
     post_delete = PostMaster.objects.filter(id=id).delete()
     return redirect('/list_page/')
+
+def create_ads(request):
+    if request.method == 'POST':
+        otherads = request.FILES.get('otherads')
+        Other_Ads = OtherAds.objects.create(other_ads=otherads)
+        json_data = {
+            'msg':'Your Advertisement has been added.'
+        }
+        return JsonResponse(json_data)
