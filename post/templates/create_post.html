@@ -53,6 +53,9 @@
                 <div class="mb-2">
                     <input type="button" class="form-control bg-success" name="" id="ads_btn" value="add ads">
                 </div>
+                <div class="mb-2">
+                    <input class="form-control btn btn-sm btn-primary" type="button" value="View ads" onclick="ads_list()">
+                </div>
             </form>
         </div>
     </div>
@@ -188,5 +191,9 @@
             return false;
         }
     })
+
+    function ads_list() {
+        window.location.href = '/ads_list/';
+    }
 </script>
 {% endblock header %}

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="container">
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i in ads_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <img src="{{i.other_ads.url}}" alt="" class="img-fluid">
+                </td>
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+    </table>
+</div>
+<script>
+    $('#myTable').DataTable({
+        Response:true,
+    });
+</script>
+{% endblock header %}

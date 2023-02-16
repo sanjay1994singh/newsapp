@@ -145,3 +145,11 @@ def create_ads(request):
             'msg':'Your Advertisement has been added.'
         }
         return JsonResponse(json_data)
+    
+def ads_list(request):
+    ads_list = OtherAds.objects.all()
+    print(ads_list,'=====================ads_list')
+    context = {
+        'ads_list':ads_list
+    }
+    return render(request, 'ads_list.html')
