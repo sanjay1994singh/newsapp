@@ -35,7 +35,7 @@ def home_page(request,id=0):
     return render(request, 'index.html', context)
 
 def get_data_by_cat(request,id):
-    data = PostMaster.objects.filter(post_category_id=id).order_by('-created_at')
+    data = PostMaster.objects.filter(post_category_id=id).order_by('-created_at')[:25]
     if data:
         data_list = []
         for i in data:
@@ -58,7 +58,11 @@ def view_post_details(request,obj_id):
     obj_id = obj_id
     category = CategoryMaster.objects.all()
     post = PostMaster.objects.all().order_by('-created_at')[:5]
+<<<<<<< HEAD
     otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')[:20]
+=======
+    otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')[:25]
+>>>>>>> c294ddbcd29d2f494b168e368e158388bc44d48f
     single_post = PostMaster.objects.get(id=obj_id)
     other_ads = OtherAds.objects.all()
     context = {
