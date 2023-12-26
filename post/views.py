@@ -62,9 +62,6 @@ def view_post_details(request, obj_id):
     obj_id = obj_id
     category = CategoryMaster.objects.all()
     post = PostMaster.objects.all().order_by('-created_at')[:5]
-
-    otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')[:20]
-
     otherpost = PostMaster.objects.all().exclude(id=obj_id).order_by('-created_at')[:25]
     single_post = PostMaster.objects.get(id=obj_id)
     other_ads = OtherAds.objects.all()
