@@ -1,3 +1,5 @@
+import os
+
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
@@ -5,10 +7,26 @@ from advertisement.models import Advertisement, OtherAds
 from .models import PostMaster
 from category.models import CategoryMaster
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Create your views here.
 
 def home_page(request, id=0):
+    count_post = PostMaster.objects.all()[:1]
+    post_count = PostMaster.objects.all().count()
+    if post_count > 400:
+        for i in count_post:
+            try:
+                i.delete()
+                file_name = i.post_img.url
+                file_path = os.path.join(BASE_DIR + file_name)
+                os.remove(file_path)
+                message = f"File '{file_path}' deleted successfully."
+            except FileNotFoundError:
+                message = f"File '{file_path}' not found."
+            except Exception as e:
+                message = f"An error occurred: {str(e)}"
     if id is not 0:
         post = PostMaster.objects.filter(post_category_id=id).order_by('-created_at')[:25]
     else:
