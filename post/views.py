@@ -13,9 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
 
 def home_page(request, id=0):
-    count_post = PostMaster.objects.all()[:1]
     post_count = PostMaster.objects.all().count()
     if post_count > 400:
+        count_post = PostMaster.objects.all()[:1]
         for i in count_post:
             try:
                 i.delete()
